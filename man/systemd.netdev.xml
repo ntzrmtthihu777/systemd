@@ -124,7 +124,7 @@
           <entry>An IPv4 or IPv6 tunnel over IPv6</entry></row>
 
           <row><entry><varname>ip6gretap</varname></entry>
-          <entry>An Level 2 GRE tunnel over IPv6.</entry></row>
+          <entry>A Level 2 GRE tunnel over IPv6.</entry></row>
 
           <row><entry><varname>ipip</varname></entry>
           <entry>An IPv4 over IPv4 tunnel.</entry></row>
@@ -163,7 +163,7 @@
           <entry>A virtual extensible LAN (vxlan), for connecting Cloud computing deployments.</entry></row>
 
           <row><entry><varname>vrf</varname></entry>
-            <entry>A Virtual Routing and Forwarding (<ulink url="https://www.kernel.org/doc/Documentation/networking/vrf.txt">VRF</ulink>) interface to create seperate routing and forwarding domains.</entry></row>
+            <entry>A Virtual Routing and Forwarding (<ulink url="https://www.kernel.org/doc/Documentation/networking/vrf.txt">VRF</ulink>) interface to create separate routing and forwarding domains.</entry></row>
 
         </tbody>
       </tgroup>
@@ -808,8 +808,7 @@
           <literal>layer2</literal>,
           <literal>layer3+4</literal>,
           <literal>layer2+3</literal>,
-          <literal>encap2+3</literal>,
-          <literal>802.3ad</literal>, and
+          <literal>encap2+3</literal>, and
           <literal>encap3+4</literal>.
           </para>
         </listitem>
@@ -1143,7 +1142,7 @@ MACAddress=12:34:56:78:9a:bc</programlisting>
     </example>
     <example>
       <title>/etc/systemd/network/25-vrf.netdev</title>
-      <para>Create an VRF interface with table 42.</para>
+      <para>Create a VRF interface with table 42.</para>
       <programlisting>[NetDev]
 Name=vrf-test
 Kind=vrf

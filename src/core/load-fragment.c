@@ -2429,7 +2429,7 @@ static int syscall_filter_parse_one(
                 int id;
 
                 id = seccomp_syscall_resolve_name(t);
-                if (id < 0)  {
+                if (id == __NR_SCMP_ERROR)  {
                         if (warn)
                                 log_syntax(unit, LOG_ERR, filename, line, 0, "Failed to parse system call, ignoring: %s", t);
                         return 0;
@@ -3594,7 +3594,7 @@ int config_parse_protect_home(
         assert(data);
 
         /* Our enum shall be a superset of booleans, hence first try
-         * to parse as as boolean, and then as enum */
+         * to parse as boolean, and then as enum */
 
         k = parse_boolean(rvalue);
         if (k > 0)
@@ -3637,7 +3637,7 @@ int config_parse_protect_system(
         assert(data);
 
         /* Our enum shall be a superset of booleans, hence first try
-         * to parse as as boolean, and then as enum */
+         * to parse as boolean, and then as enum */
 
         k = parse_boolean(rvalue);
         if (k > 0)

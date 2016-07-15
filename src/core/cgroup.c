@@ -755,15 +755,19 @@ static void cgroup_context_apply(Unit *u, CGroupMask mask, ManagerState state) {
                         cgroup_apply_unified_memory_limit(u, "memory.max", max);
                 } else {
                         char buf[DECIMAL_STR_MAX(uint64_t) + 1];
+                        uint64_t val = c->memory_limit;
 
-                        if (c->memory_limit != CGROUP_LIMIT_MAX)
-                                xsprintf(buf, "%" PRIu64 "\n", c->memory_limit);
-                        else {
-                                xsprintf(buf, "%" PRIu64 "\n", c->memory_max);
+                        if (val == CGROUP_LIMIT_MAX) {
+                                val = c->memory_max;
 
-                                if (c->memory_max != CGROUP_LIMIT_MAX)
-                                        log_cgroup_compat(u, "Applying MemoryMax %" PRIu64 " as MemoryLimit", c->memory_max);
+                                if (val != CGROUP_LIMIT_MAX)
+                                        log_cgroup_compat(u, "Applying MemoryMax %" PRIi64 " as MemoryLimit", c->memory_max);
                         }
+
+                        if (val == CGROUP_LIMIT_MAX)
+                                strncpy(buf, "-1\n", sizeof(buf));
+                        else
+                                xsprintf(buf, "%" PRIu64 "\n", val);
 
                         r = cg_set_attribute("memory", path, "memory.limit_in_bytes", buf);
                         if (r < 0)
@@ -1132,7 +1136,7 @@ int unit_watch_cgroup(Unit *u) {
         /* Only applies to the unified hierarchy */
         r = cg_unified();
         if (r < 0)
-                return log_unit_error_errno(u, r, "Failed detect wether the unified hierarchy is used: %m");
+                return log_unit_error_errno(u, r, "Failed detect whether the unified hierarchy is used: %m");
         if (r == 0)
                 return 0;
 
@@ -1654,7 +1658,7 @@ int manager_setup_cgroup(Manager *m) {
                 /* 3. Install agent */
                 if (unified) {
 
-                        /* In the unified hierarchy we can can get
+                        /* In the unified hierarchy we can get
                          * cgroup empty notifications via inotify. */
 
                         m->cgroup_inotify_event_source = sd_event_source_unref(m->cgroup_inotify_event_source);

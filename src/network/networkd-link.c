@@ -2173,7 +2173,7 @@ static int link_set_ipv6_forward(Link *link) {
         if (!link_ipv6_forward_enabled(link))
                 return 0;
 
-        /* On Linux, the IPv6 stack does not not know a per-interface
+        /* On Linux, the IPv6 stack does not know a per-interface
          * packet forwarding setting: either packet forwarding is on
          * for all, or off for all. We hence don't bother with a
          * per-interface setting, but simply propagate the interface
@@ -2726,7 +2726,7 @@ network_file_fail:
 
                 r = sd_dhcp_client_set_request_address(link->dhcp_client, &address.in);
                 if (r < 0)
-                        return log_link_error_errno(link, r, "Falied to set inital DHCPv4 address %s: %m", dhcp4_address);
+                        return log_link_error_errno(link, r, "Falied to set initial DHCPv4 address %s: %m", dhcp4_address);
         }
 
 dhcp4_address_fail:
@@ -2744,7 +2744,7 @@ dhcp4_address_fail:
 
                 r = sd_ipv4ll_set_address(link->ipv4ll, &address.in);
                 if (r < 0)
-                        return log_link_error_errno(link, r, "Falied to set inital IPv4LL address %s: %m", ipv4ll_address);
+                        return log_link_error_errno(link, r, "Falied to set initial IPv4LL address %s: %m", ipv4ll_address);
         }
 
 ipv4ll_address_fail:

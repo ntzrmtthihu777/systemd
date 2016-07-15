@@ -727,7 +727,7 @@ static void dispatch_message_real(
                                 *((char*) mempcpy(stpcpy(x, "_SELINUX_CONTEXT="), label, label_len)) = 0;
                                 IOVEC_SET_STRING(iovec[n++], x);
                         } else {
-                                security_context_t con;
+                                char *con;
 
                                 if (getpidcon(ucred->pid, &con) >= 0) {
                                         x = strjoina("_SELINUX_CONTEXT=", con);
@@ -1607,7 +1607,7 @@ static int dispatch_notify_event(sd_event_source *es, int fd, uint32_t revents, 
                 /* Dispatch one stream notification event */
                 stdout_stream_send_notify(s->stdout_streams_notify_queue);
 
-        /* Leave us enabled if there's still more to to do. */
+        /* Leave us enabled if there's still more to do. */
         if (s->send_watchdog || s->stdout_streams_notify_queue)
                 return 0;
 

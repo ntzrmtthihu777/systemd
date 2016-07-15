@@ -1683,7 +1683,7 @@ static void unit_check_unneeded(Unit *u) {
                         if (unit_active_or_pending(other))
                                 return;
 
-        /* If stopping a unit fails continously we might enter a stop
+        /* If stopping a unit fails continuously we might enter a stop
          * loop here, hence stop acting on the service being
          * unnecessary after a while. */
         if (!ratelimit_test(&u->auto_stop_ratelimit)) {
@@ -1728,7 +1728,7 @@ static void unit_check_binds_to(Unit *u) {
         if (!stop)
                 return;
 
-        /* If stopping a unit fails continously we might enter a stop
+        /* If stopping a unit fails continuously we might enter a stop
          * loop here, hence stop acting on the service being
          * unnecessary after a while. */
         if (!ratelimit_test(&u->auto_stop_ratelimit)) {
@@ -3505,7 +3505,6 @@ int unit_make_transient(Unit *u) {
 
         unit_add_to_dbus_queue(u);
         unit_add_to_gc_queue(u);
-        unit_add_to_load_queue(u);
 
         fputs("# This is a transient unit file, created programmatically via the systemd API. Do not edit.\n",
               u->transient_file);
@@ -3791,7 +3790,7 @@ bool unit_is_pristine(Unit *u) {
         /* Check if the unit already exists or is already around,
          * in a number of different ways. Note that to cater for unit
          * types such as slice, we are generally fine with units that
-         * are marked UNIT_LOADED even even though nothing was
+         * are marked UNIT_LOADED even though nothing was
          * actually loaded, as those unit types don't require a file
          * on disk to validly load. */
 

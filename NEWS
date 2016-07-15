@@ -569,7 +569,7 @@ CHANGES WITH 228:
           the service.
 
         * Timer units gained support for a new RemainAfterElapse=
-          setting which takes a boolean argument. It defaults on on,
+          setting which takes a boolean argument. It defaults to on,
           exposing behaviour unchanged to previous releases. If set to
           off, timer units are unloaded after they elapsed if they
           cannot elapse again. This is particularly useful for
@@ -760,7 +760,7 @@ CHANGES WITH 227:
         * Support for USB FunctionFS activation has been added. This
           allows implementation of USB gadget services that are
           activated as soon as they are requested, so that they don't
-          have to run continously, similar to classic socket
+          have to run continuously, similar to classic socket
           activation.
 
         * The "systemctl exit" command now optionally takes an
@@ -851,7 +851,7 @@ CHANGES WITH 227:
           files controlled by the number of files that shall remain,
           in addition to the already existing control by size and by
           date. This is useful as journal interleaving performance
-          degrades with too many seperate journal files, and allows
+          degrades with too many separate journal files, and allows
           putting an effective limit on them. The new setting defaults
           to 100, but this may be changed by setting SystemMaxFiles=
           and RuntimeMaxFiles= in journald.conf. Also, the
@@ -5236,7 +5236,7 @@ CHANGES WITH 192:
         * We do not mount the "cpuset" controller anymore together with
           "cpu" and "cpuacct", as "cpuset" groups generally cannot be
           started if no parameters are assigned to it. "cpuset" hence
-          broke code that assumed it it could create "cpu" groups and
+          broke code that assumed it could create "cpu" groups and
           just start them.
 
         * journalctl -f will now subscribe to terminal size changes,

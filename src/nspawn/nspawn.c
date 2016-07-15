@@ -2642,7 +2642,7 @@ static int inner_child(
 
 #ifdef HAVE_SELINUX
         if (arg_selinux_context)
-                if (setexeccon((security_context_t) arg_selinux_context) < 0)
+                if (setexeccon(arg_selinux_context) < 0)
                         return log_error_errno(errno, "setexeccon(\"%s\") failed: %m", arg_selinux_context);
 #endif
 
@@ -2873,7 +2873,7 @@ static int outer_child(
                         if (l < 0)
                                 return log_error_errno(errno, "Failed to recv UID shift: %m");
                         if (l != sizeof(arg_uid_shift)) {
-                                log_error("Short read while recieving UID shift.");
+                                log_error("Short read while receiving UID shift.");
                                 return -EIO;
                         }
                 }

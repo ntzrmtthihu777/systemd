@@ -104,7 +104,7 @@ int fd_is_mount_point(int fd, const char *filename, int flags) {
          *
          * As last fallback we do traditional fstat() based st_dev
          * comparisons. This is how things were traditionally done,
-         * but unionfs breaks breaks this since it exposes file
+         * but unionfs breaks this since it exposes file
          * systems with a variety of st_dev reported. Also, btrfs
          * subvolumes have different st_dev, even though they aren't
          * real mounts of their own. */
@@ -500,6 +500,7 @@ bool fstype_is_network(const char *fstype) {
                 "gfs2\0"
                 "glusterfs\0"
                 "pvfs2\0" /* OrangeFS */
+                "ocfs2\0"
                 ;
 
         const char *x;
